@@ -1,4 +1,4 @@
-const STORAGE_KEY = "peekaaboo-production-tracker-v2";
+const STORAGE_KEY = "cladder-co-wiuetyoobzbhvsartwis-v1";
 const SUPABASE_STATE_TABLE = "production_tracker_state";
 const SUPABASE_STATE_ID = "main";
 // Populated by supabase-config.js (gitignored; never commit real keys).

@@ -4,12 +4,13 @@ A browser-based production tracker for fabric inventory, cutting batches, stage 
 
 ## Supabase Setup
 
-1. Open your Supabase project SQL editor.
-2. Run `supabase-setup.sql` once.
-3. If the database already exists, run `supabase-security-hardening.sql` once to remove anonymous write/RPC access.
-4. Open `index.html` in a browser or use the GitHub Pages URL.
+The Cladder & Co project is `wiuetyoobzbhvsartwis` (Mumbai). Its ten tables, row-level access policies, and atomic relational sync function were created using `cladder-schema.sql`. This is a fresh-project schema, not an existing-database migration.
 
-The app stores a full tracker snapshot in the `production_tracker_state` table, mirrors fabric inventory into `public.fabrics`, and also keeps a browser `localStorage` backup.
+The only authorized email is `20saumay04@gmail.com`. Create that user in Supabase Authentication > Users, choosing a password privately. Client sign-in uses Supabase email/password authentication; database policies enforce the allowed email independently of the UI.
+
+GitHub Pages builds its browser config from repository variables `SUPABASE_URL` and `SUPABASE_ANON_KEY`. Only a publishable/anon key belongs in these variables, never a secret/service-role key.
+
+This project starts with empty inventories and production records. To migrate historical entries, export JSON from the original dashboard and import it after signing in to Cladder & Co. The original Supabase project is not accessible to this connected account.
 
 ## GitHub Safety
 
@@ -19,6 +20,6 @@ The app stores a full tracker snapshot in the `production_tracker_state` table, 
 
 Live dashboard: https://saumay-spec.github.io/Cladder-Co/
 
-The dashboard uses the original Supabase project and shared tracker snapshot, so changes after login also affect the original tracker. The allowed login is `20saumay04@gmail.com`; a Supabase project administrator must ensure this address exists in Authentication > Users. Changing the dashboard allowlist does not create a Supabase Auth user or grant database access. Keep signups disabled and confirm the project database policies before adding users.
+Cladder & Co now uses its own Supabase project, independently of the original tracker. The browser backup key is specific to this project so old preview data cannot be confused with the new inventory.
 
-Opening the app loads shared entries without writing them back. If the initial cloud load fails, automatic cloud saves stay disabled until a successful reconnect. Existing browser backup keys are retained.
+Opening the app reads the shared entries without writing them back. If cloud loading fails, automatic cloud saves stay disabled until a successful reconnect.
