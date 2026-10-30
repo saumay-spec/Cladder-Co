@@ -14,7 +14,7 @@ This project starts with empty inventories and production records. To migrate hi
 
 ## GitHub Safety
 
-`supabase-config.js` contains the original project browser configuration. GitHub Pages generates this file from the `SUPABASE_URL` and `SUPABASE_ANON_KEY` repository variables. The Supabase anon key used by the browser app is public by design; never commit a Supabase `service_role` key. Database writes are expected to require a signed-in Supabase Auth user.
+`supabase-config.js` contains the Cladder & Co project browser configuration. GitHub Pages generates this file from the `SUPABASE_URL` and `SUPABASE_ANON_KEY` repository variables. The Supabase anon key used by the browser app is public by design; never commit a Supabase `service_role` key. Database writes are expected to require a signed-in Supabase Auth user.
 
 ## Cladder & Co deployment
 
