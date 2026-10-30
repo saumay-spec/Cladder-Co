@@ -4,9 +4,9 @@ A browser-based production tracker for fabric inventory, cutting batches, stage 
 
 ## Supabase Setup
 
-The Cladder & Co project is `wiuetyoobzbhvsartwis` (Mumbai). Its ten tables, row-level access policies, and atomic relational sync function were created using `cladder-schema.sql`. This is a fresh-project schema, not an existing-database migration.
+The Cladder & Co project is `wiuetyoobzbhvsartwis` (Mumbai). Its ten tables and atomic relational sync function were created using `cladder-schema.sql`. Apply `cladder-public-access.sql` afterward to enable the owner-requested public viewing and editing. This is a fresh-project schema, not an existing-database migration.
 
-The only authorized email is `20saumay04@gmail.com`. Create that user in Supabase Authentication > Users, choosing a password privately. Client sign-in uses Supabase email/password authentication; database policies enforce the allowed email independently of the UI.
+The dashboard opens directly without sign-in. At the owner's explicit request, both anonymous visitors and authenticated users can read, add, change, and delete tracker data. RLS remains enabled, with public access policies on the ten application tables; the sync function remains security invoker. No passwords or privileged server keys are used by the dashboard.
 
 GitHub Pages builds its browser config from repository variables `SUPABASE_URL` and `SUPABASE_ANON_KEY`. Only a publishable/anon key belongs in these variables, never a secret/service-role key.
 
