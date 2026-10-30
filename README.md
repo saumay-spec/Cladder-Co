@@ -1,4 +1,4 @@
-# Peekaaboo Kids Production Tracker
+# Cladder & Co Production Tracker
 
 A browser-based production tracker for fabric inventory, cutting batches, stage movement, outsourcing, incoming receipts, and accessory stock.
 

@@ -2451,7 +2451,7 @@ function renderOutsourcingRows() {
 // every printed receipt. Left blank fields are simply omitted from the
 // letterhead instead of printing "undefined" or an empty line.
 const COMPANY_INFO = {
-  name: "Peekaaboo Kids",
+  name: "Cladder & Co",
   tagline: "Kids' Apparel Production",
   address: "",
   phone: "",
@@ -3177,7 +3177,7 @@ function printFabricAverageSheet() {
   `).join("");
 
   const html = `<!doctype html>
-<html><head><meta charset="utf-8"><title>Peekaaboo Fabric Usage Sheet</title>
+<html><head><meta charset="utf-8"><title>Cladder &amp; Co Fabric Usage Sheet</title>
 <style>
   body { font-family: Arial, Helvetica, sans-serif; padding: 24px; color: #111; }
   h1 { font-size: 20px; margin: 0 0 2px; }
@@ -3189,7 +3189,7 @@ function printFabricAverageSheet() {
   .note { margin-top: 12px; font-size: 11px; color: #444; }
 </style></head>
 <body>
-  <h1>Peekaaboo &mdash; Fabric Usage Sheet</h1>
+  <h1>Cladder &amp; Co &mdash; Fabric Usage Sheet</h1>
   <p class="meta">Generated ${formatDate(todayDate())} &mdash; average meters used per piece, calculated from actual past cutting entries. One row per SKU.</p>
   <table>
     <thead><tr><th>SKU</th><th>Name</th><th>Sizes cut</th><th>Avg cloth used / piece</th></tr></thead>
@@ -4470,7 +4470,7 @@ function bindEvents() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `peekaaboo-production-${new Date().toISOString().slice(0, 10)}.json`;
+    link.download = `cladder-co-production-${new Date().toISOString().slice(0, 10)}.json`;
     link.click();
     URL.revokeObjectURL(url);
   });
