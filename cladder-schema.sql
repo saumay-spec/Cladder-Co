@@ -57,62 +57,62 @@ alter table public.production_tracker_state enable row level security;
 revoke all on public.production_tracker_state from anon;
 grant select, insert, update, delete on public.production_tracker_state to authenticated;
 create policy "Cladder owner access" on public.production_tracker_state for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.fabrics enable row level security;
 revoke all on public.fabrics from anon;
 grant select, insert, update, delete on public.fabrics to authenticated;
 create policy "Cladder owner access" on public.fabrics for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.cuttings enable row level security;
 revoke all on public.cuttings from anon;
 grant select, insert, update, delete on public.cuttings to authenticated;
 create policy "Cladder owner access" on public.cuttings for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.cutting_fabric_components enable row level security;
 revoke all on public.cutting_fabric_components from anon;
 grant select, insert, update, delete on public.cutting_fabric_components to authenticated;
 create policy "Cladder owner access" on public.cutting_fabric_components for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.cutting_stage_movements enable row level security;
 revoke all on public.cutting_stage_movements from anon;
 grant select, insert, update, delete on public.cutting_stage_movements to authenticated;
 create policy "Cladder owner access" on public.cutting_stage_movements for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.outsourcing enable row level security;
 revoke all on public.outsourcing from anon;
 grant select, insert, update, delete on public.outsourcing to authenticated;
 create policy "Cladder owner access" on public.outsourcing for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.outsourcing_sizes enable row level security;
 revoke all on public.outsourcing_sizes from anon;
 grant select, insert, update, delete on public.outsourcing_sizes to authenticated;
 create policy "Cladder owner access" on public.outsourcing_sizes for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.outsourcing_accessories enable row level security;
 revoke all on public.outsourcing_accessories from anon;
 grant select, insert, update, delete on public.outsourcing_accessories to authenticated;
 create policy "Cladder owner access" on public.outsourcing_accessories for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.outsourcing_receipts enable row level security;
 revoke all on public.outsourcing_receipts from anon;
 grant select, insert, update, delete on public.outsourcing_receipts to authenticated;
 create policy "Cladder owner access" on public.outsourcing_receipts for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 alter table public.accessory_stock enable row level security;
 revoke all on public.accessory_stock from anon;
 grant select, insert, update, delete on public.accessory_stock to authenticated;
 create policy "Cladder owner access" on public.accessory_stock for all to authenticated
-using (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com')
-with check (lower((select auth.jwt() ->> 'email')) = '20saumay04@gmail.com');
+using (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com')
+with check (lower(((select auth.jwt()) ->> 'email')) = '20saumay04@gmail.com');
 grant usage on schema public to authenticated;
 create function public.replace_relational_data(payload jsonb) returns void
 language plpgsql security invoker set search_path = '' as $$
