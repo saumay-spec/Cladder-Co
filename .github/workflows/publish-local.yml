@@ -1,0 +1,27 @@
+name: Publish Cladder from temporary runner
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  publish:
+    runs-on: [self-hosted, Windows, X64, cladder-publish]
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package static dashboard
+        shell: powershell
+        run: |
+          tar --exclude=.git --exclude=.github -cf "$env:RUNNER_TEMP/artifact.tar" .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+      - id: deployment
+        uses: actions/deploy-pages@v4
