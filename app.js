@@ -668,27 +668,27 @@ async function loadRemoteState() {
     .eq("id", SUPABASE_STATE_ID)
     .maybeSingle();
 
-  remoteLoadComplete = true;
-
   if (error) {
     console.error("Supabase load failed", error);
     const fabricsLoaded = await loadRemoteFabrics();
-    setSyncStatus(fabricsLoaded ? "Synced" : "Supabase unavailable", fabricsLoaded ? "ok" : "error");
+    remoteLoadComplete = false;
+    setSyncStatus("Cloud load failed — reconnect before editing", "error");
     return;
   }
 
+  remoteLoadComplete = true;
   if (data?.data) {
     suppressRemoteSave = true;
     state = normalizeState(data.data);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     suppressRemoteSave = false;
-    const fabricsOk = await persistRemoteFabrics();
-    const relationalOk = fabricsOk ? await persistRemoteRelationalData() : false;
-    setSyncStatus(relationalOk ? "Synced" : "Supabase partial sync", relationalOk ? "ok" : "error");
+    setSyncStatus("Synced", "ok");
     return;
   }
 
-  await persistRemoteState();
+  // Opening an empty project must not upload a browser's old/default data.
+  await loadRemoteFabrics();
+  setSyncStatus("Connected", "ok");
 }
 
 function toNumber(value) {
@@ -1097,6 +1097,15 @@ function splitBatch(cutting, splitSizes) {
     fabricUsed: (toNumber(cutting.fabricUsed) * splitPieces) / originalPieces,
     correction: (toNumber(cutting.correction) * splitPieces) / originalPieces
   };
+  // Preserve total displayed meterage across both siblings. Inventory was
+  // already deducted when the batch was cut, so do not change fabric stock.
+  cutting.fabricUsed = toNumber(cutting.fabricUsed) - child.fabricUsed;
+  cutting.correction = toNumber(cutting.correction) - child.correction;
+  cutting.fabricComponents = (cutting.fabricComponents || []).map((component, index) => ({
+    ...component,
+    used: toNumber(component.used) - toNumber(child.fabricComponents[index]?.used),
+    correction: toNumber(component.correction) - toNumber(child.fabricComponents[index]?.correction)
+  }));
   state.cuttings.push(child);
   return child;
 }
@@ -4500,8 +4509,11 @@ function bindEvents() {
 
 async function initApp() {
   await loadRemoteState();
-  bindEvents();
-  bindAutocompletes();
+  if (!appEventsBound) {
+    bindEvents();
+    bindAutocompletes();
+    appEventsBound = true;
+  }
   renderAll();
   if ($("#fabricForm").date) $("#fabricForm").date.value = todayDate();
   if ($("#cuttingForm").entryDate) $("#cuttingForm").entryDate.value = todayDate();
@@ -4523,9 +4535,10 @@ async function initApp() {
 // Users. If either of those drifts, this client-side check alone won't
 // protect anything — re-verify both in the Supabase dashboard, not just
 // in this file, if access control is ever in question.
-const ALLOWED_EMAIL = "peekaabookidsonline@gmail.com";
+const ALLOWED_EMAIL = "20saumay04@gmail.com";
 
 let appBooted = false;
+let appEventsBound = false;
 
 function showLoginScreen(message = "") {
   const login = $("#loginScreen");
@@ -4608,6 +4621,7 @@ async function handleReconnect() {
   if (ok) {
     remoteLoadComplete = false;
     await loadRemoteState();
+    renderAll();
   } else {
     setSyncStatus("Signed out", "error");
     showLoginScreen();

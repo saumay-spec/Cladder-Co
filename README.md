@@ -13,4 +13,12 @@ The app stores a full tracker snapshot in the `production_tracker_state` table, 
 
 ## GitHub Safety
 
-`supabase-config.js` is intentionally ignored by Git for local overrides. The Supabase anon key used by the browser app is public by design; never commit a Supabase `service_role` key. Database writes are expected to require a signed-in Supabase Auth user.
+`supabase-config.js` contains the original project browser configuration. GitHub Pages generates this file from the `SUPABASE_URL` and `SUPABASE_ANON_KEY` repository variables. The Supabase anon key used by the browser app is public by design; never commit a Supabase `service_role` key. Database writes are expected to require a signed-in Supabase Auth user.
+
+## Cladder & Co deployment
+
+Live dashboard: https://saumay-spec.github.io/Cladder-Co/
+
+The dashboard uses the original Supabase project and shared tracker snapshot, so changes after login also affect the original tracker. The allowed login is `20saumay04@gmail.com`; a Supabase project administrator must ensure this address exists in Authentication > Users. Changing the dashboard allowlist does not create a Supabase Auth user or grant database access. Keep signups disabled and confirm the project database policies before adding users.
+
+Opening the app loads shared entries without writing them back. If the initial cloud load fails, automatic cloud saves stay disabled until a successful reconnect. Existing browser backup keys are retained.

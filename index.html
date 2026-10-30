@@ -6,6 +6,8 @@
   <title>Cladder &amp; Co Production Tracker</title>
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="cladder-theme.css?v=1">
+  <meta name="theme-color" content="#192b2a">
   <style>
     .login-screen {
       min-height: 100vh;
@@ -74,8 +76,10 @@
 <body>
   <div id="loginScreen" class="login-screen">
     <div class="login-card">
-      <h1>Cladder &amp; Co Production Tracker</h1>
-      <p>Sign in to continue</p>
+      <div class="brand-seal" aria-hidden="true">C<span>&amp;</span>C</div>
+      <p class="login-kicker">THE PRODUCTION WORKSPACE</p>
+      <h1>Cladder &amp; Co</h1>
+      <p>Thoughtfully made. Beautifully managed.</p>
       <form id="loginForm">
         <label for="loginEmail">Email</label>
         <input id="loginEmail" type="email" autocomplete="username" required>
@@ -89,9 +93,10 @@
 
   <div id="appRoot" hidden>
   <header class="app-header">
-    <div>
-      <p class="eyebrow">Cladder &amp; Co</p>
-      <h1>Production Tracker</h1>
+    <div class="brand-lockup">
+      <div class="brand-seal" aria-hidden="true">C<span>&amp;</span>C</div>
+      <div><p class="eyebrow">Cladder &amp; Co</p>
+      <h1>Production workspace</h1></div>
     </div>
     <div class="header-actions">
       <span class="sync-status" id="syncStatus" role="status">Local mode</span>
@@ -207,7 +212,7 @@
       <div class="section-heading">
         <div>
           <h2>Overview</h2>
-          <p>Every cutting batch by SKU and common name, with size-wise quantity and where it currently stands. Batches move between these automatically as you advance them through the stage tabs &mdash; freshly cut sits in "Cutting complete", anything past that and before Finished Goods counts as WIP (with its exact stage shown), and completed batches land in "Finished goods".</p>
+          <p>Your production at a glance. Follow every batch from the cutting table to finished goods.</p>
         </div>
       </div>
       <div class="sub-tabs" id="overviewSubTabs" role="group" aria-label="Overview views">
@@ -836,6 +841,6 @@
   <script src="sku-database.js"></script>
   <script src="trims-database.js"></script>
   <script src="accessory-rules.js"></script>
-  <script src="app.js?v=20260812b"></script>
+  <script src="app.js?v=cladder2"></script>
 </body>
 </html>

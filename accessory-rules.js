@@ -1,4 +1,5 @@
 window.PEEKAABOO_ACCESSORY_RULES = {
+  kurta: { label: "Kurta", elastic: 0, button: 5, tag: 1 },
   pant: {
     label: "Pant",
     elastic: 1,
