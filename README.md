@@ -18,9 +18,9 @@ This project starts with empty inventories and production records. To migrate hi
 
 ## Cladder & Co deployment
 
-Live dashboard: https://cladder-co-workspace.royaltrail1024.chatgpt.site
+Live dashboard: https://saumay-spec.github.io/Cladder-Co/
 
-The public dashboard is hosted with Sites because GitHub Actions and Pages builds remained queued. The GitHub Pages address is https://saumay-spec.github.io/Cladder-Co/ and may still serve an older build. The Sites project is `appgprj_6ae4db6576348191a204c1e360d65099`; its deployed source is the static dashboard connected to the same Cladder Supabase project.
+GitHub Pages is the primary public host. A fallback dashboard is also available at https://cladder-co-workspace.royaltrail1024.chatgpt.site and uses the same Supabase project.
 
 Cladder & Co now uses its own Supabase project, independently of the original tracker. The browser backup key is specific to this project so old preview data cannot be confused with the new inventory.
 
